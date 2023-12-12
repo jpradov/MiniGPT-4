@@ -39,7 +39,7 @@ run:
   iters_per_epoch: 11196
 
   seed: 42
-  output_dir: "checkpoints"
+  output_dir: "../../../mnt/nlpdata1/home/jprado/minigptv2/checkpoints"
 
   amp: True
   resume_ckpt_path: null
