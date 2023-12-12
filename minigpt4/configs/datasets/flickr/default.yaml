@@ -2,5 +2,5 @@ datasets:
   flickr_grounded_caption:
     data_type: images
     build_info:
-      image_path: /path/to/filtered_flikcr/images
-      ann_path: /path/to/filtered_flikcr/groundedcaption.json
+      image_path: /../../../../mnt/nlpdata1/home/jprado/LLaVA/playground/data/
+      ann_path: /../../../../mnt/nlpdata1/home/jprado/LLaVA/playground/data/xBD_train_ground_limit.json

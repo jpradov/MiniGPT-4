@@ -33,14 +33,14 @@ class OKVQAEvalData(torch.utils.data.Dataset):
     
     def __getitem__(self, idx):
         data = self.loaded_data[idx]
-        img_id = data['image_id']
-        question = data['question']
+        img_id = data['image']
+        question = data['text']
         question_id = data['question_id']
-        img_file = '{:0>12}.jpg'.format(img_id)
+        img_file = data['image']
         image_path = os.path.join(self.root_path, img_file)
         image = Image.open(image_path).convert('RGB')
         image = self.vis_processor(image)
-        question = f"[vqa] Based on the image, respond to this question with a short answer: {question}"
+        question = f"[grounding] {question}"
         return image, question, question_id, img_id
 
 class VizWizEvalData(torch.utils.data.Dataset):

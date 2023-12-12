@@ -5,8 +5,8 @@ model:
   end_sym: "</s>"
   low_resource: False
   prompt_template: '[INST] {} [/INST]'
-  llama_model: ""
-  ckpt: ""
+  llama_model: "../../../mnt/nlpdata1/home/jprado/minigptv2/Llama-2-7b-chat-hf"
+  ckpt: "minigpt4/checkpoints/20231211151/checkpoint_2.pth"
   lora_r: 64
   lora_alpha: 16
 
@@ -22,56 +22,16 @@ datasets:
         name: "blip_caption"
 
 evaluation_datasets:
-  refcoco:
-    eval_file_path: /path/to/eval/annotation/path  
-    img_path: /path/to/eval/image/path      
-    max_new_tokens: 20
-    batch_size: 10
-  refcocog:
-    eval_file_path: /path/to/eval/annotation/path  
-    img_path: /path/to/eval/image/path    
-    max_new_tokens: 20
-    batch_size: 10
-  refcoco+:
-    eval_file_path: /path/to/eval/annotation/path  
-    img_path: /path/to/eval/image/path    
-    max_new_tokens: 20
-    batch_size: 10
-  gqa:
-    eval_file_path: /path/to/eval/annotation/path  
-    img_path: /path/to/eval/image/path    
-    max_new_tokens: 20
-    batch_size: 10
   okvqa:
-    eval_file_path: /path/to/eval/annotation/path  
-    img_path: /path/to/eval/image/path     
-    max_new_tokens: 20
-    batch_size: 10
-  vizwiz:
-    eval_file_path: /path/to/eval/annotation/path  
-    img_path: /path/to/eval/image/path    
-    max_new_tokens: 20
-    batch_size: 10
-  iconvqa:
-    eval_file_path: /path/to/eval/annotation/path  
-    img_path: /path/to/eval/image/path    
-    max_new_tokens: 20
-    batch_size: 10
-  vsr:
-    eval_file_path: cambridgeltl/vsr_zeroshot 
-    img_path: /path/to/eval/image/path    
-    max_new_tokens: 20
-    batch_size: 10
-  hm:
-    eval_file_path: /path/to/eval/annotation/path  
-    img_path: /path/to/eval/image/path 
-    max_new_tokens: 20
-    batch_size: 100
+    eval_file_path: ../../../mnt/nlpdata1/home/jprado/LLaVA/playground/data/eval/
+    img_path:   ../../../mnt/nlpdata1/home/jprado/LLaVA/playground/data/eval/    
+    max_new_tokens: 50
+    batch_size: 4
 
 run:
   task: image_text_pretrain
   name: minigptv2_evaluation
-  save_path: /path/to/save/folder_path
+  save_path: eval_results/
 
   
 

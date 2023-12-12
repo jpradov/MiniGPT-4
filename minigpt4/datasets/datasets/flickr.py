@@ -30,10 +30,7 @@ class GroundedDetailDataset(Dataset):
         self.text_processor = text_processor
 
         self.instruction_pool = [
-            '[grounding] please describe this image in details',
-            '[grounding] describe this image as detailed as possible',
-            '[grounding] summarize this image in details',
-            '[grounding] give a thorough description of what you see in this image',
+            '[grounding] Are there any damaged or destroyed buildings in this image? Describe them in detail.',
         ]
 
         with open(ann_path, 'r') as f:
@@ -44,22 +41,21 @@ class GroundedDetailDataset(Dataset):
 
     def __getitem__(self, index):
         info = self.ann[index]
-
         # image_file = 'COCO_train2014_{}.jpg'.format(info['image_id'])
-        image_file = '{}.jpg'.format(info['image_id'])
+        image_file = info['image']
         image_path = os.path.join(self.vis_root, image_file)
         image = Image.open(image_path).convert("RGB")
         image = self.vis_processor(image)
 
-        answer = info['grounded_caption']
-        instruction = random.choice(self.instruction_pool)
-        instruction = "<Img><ImageHere></Img> {} ".format(instruction)
+        answer = info['conversations'][-1]['value']
+        instruction = info['conversations'][0]['value']
+        instruction = "<Img><ImageHere></Img> [grounding] {} ".format(instruction)
 
         return {
             "image": image,
             "instruction_input": instruction,
             "answer": answer,
-            "image_id": info['image_id'],
+            "image_id": info['id'],
         }
 
 
